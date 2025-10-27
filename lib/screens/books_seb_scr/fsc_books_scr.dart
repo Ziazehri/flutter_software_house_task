@@ -44,10 +44,10 @@ class FscBooksScr extends StatelessWidget {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Expanded(child: customButton(text: "Pre-Medical", onPressed: (){},backgroundColor: AppColors.primaryC)),
+                                    customButton(text: "Pre-Medical", onPressed: (){},backgroundColor: AppColors.primaryC),
                                                                         Expanded(child: customButton(text: "Pre-Engineering", onPressed: (){},backgroundColor: AppColors.secondaryB)),
-                                                                                                            Expanded(child: customButton(text: "ICS", onPressed: (){},backgroundColor: const Color.fromARGB(255, 150, 116, 243))),
-                                                                                                                                                Expanded(child: customButton(text: "I.COM", onPressed: (){},backgroundColor: AppColors.primaryB)),
+                                                                                                            customButton(text: "ICS", onPressed: (){},backgroundColor: const Color.fromARGB(255, 150, 116, 243)),
+                                                                                                                                                customButton(text: "I.COM", onPressed: (){},backgroundColor: AppColors.primaryB),
 
                                   ],
                                 ),
@@ -259,7 +259,7 @@ Widget customButton({
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
       ),
-      minimumSize: const Size(0, 40),
+      minimumSize: const Size(25, 40),
     ),
     onPressed: onPressed,
     child: Text(

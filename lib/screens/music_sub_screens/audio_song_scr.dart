@@ -112,7 +112,7 @@ class _AudioSongsScrState extends State<AudioSongsScr> {
               children: [
                 const CustomHeader2(),
 
-                // 🔍 Search Bar
+                //  Search Bar
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: TextField(
@@ -131,7 +131,7 @@ class _AudioSongsScrState extends State<AudioSongsScr> {
                   ),
                 ),
 
-                // 🧒 Header
+                //  Header
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

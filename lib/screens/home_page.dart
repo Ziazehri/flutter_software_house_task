@@ -11,7 +11,7 @@ import 'package:app/themes/app_theme.dart';
 import 'package:app/themes/gradiant_bkg.dart';
 import 'package:app/screens/cartoons_scr.dart';
 import 'package:app/widgets/circle_avaters.dart';
-import 'package:app/widgets/header.dart';
+import 'package:app/widgets/home_scr_header.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
