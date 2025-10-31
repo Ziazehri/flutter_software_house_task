@@ -1,12 +1,12 @@
-import 'package:app/themes/app_theme.dart';
 import 'package:app/themes/gradiant_bkg.dart';
 import 'package:app/widgets/custom_header2.dart';
+import 'package:app/widgets/subject_card1.dart';
 import 'package:flutter/material.dart';
 
 class ToolsPage extends StatelessWidget {
-  final VoidCallback? onBack;
+  
 
-  const ToolsPage({super.key, this.onBack});
+  const ToolsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,18 +21,32 @@ class ToolsPage extends StatelessWidget {
 
                 const SizedBox(height: 30),
 
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
-                    "Unlock Creativity with Fun & Smart Tools",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
+               Padding(
+  padding: const EdgeInsets.symmetric(horizontal: 16),
+  child: RichText(
+    textAlign: TextAlign.center,
+    text: const TextSpan(
+      style: TextStyle(
+        fontSize: 26,
+        fontWeight: FontWeight.bold,
+      ),
+      children: [
+        TextSpan(
+          text: "Unlock Creativity ",
+          style: TextStyle(color: Colors.white),
+        ),
+        TextSpan(
+          text: "with\nFun & Smart ",
+          style: TextStyle(color: Color(0XFFFBBF24)), // highlighted part
+        ),
+        TextSpan(
+          text: "Tools",
+          style: TextStyle(color: Colors.white),
+        ),
+      ],
+    ),
+  ),
+),
 
                 const SizedBox(height: 20),
 
@@ -44,18 +58,18 @@ class ToolsPage extends StatelessWidget {
                     mainAxisSpacing: 14,
                     childAspectRatio: 0.8, // Adjusted ratio
                     children: [
-                      _buildSubjectCard(context, "assets/images/drawingp.png",
-                          "Drawing\nPad", const Color(0xFFCAD8EF)),
-                      _buildSubjectCard(context, "assets/images/voicer.png",
-                          "Voice\nRecorder", const Color(0xFFFCE4C1)),
-                      _buildSubjectCard(context, "assets/images/whiteb.png",
-                          "Whiteboard\nNotes", const Color(0xFFC0EABD)),
-                      _buildSubjectCard(context, "assets/images/flashc.png",
-                          "Flash\nCard", const Color(0xFFCAD8EF)),
-                      _buildSubjectCard(context, "assets/images/calculator.png",
-                          "Calculator", const Color(0xFFFCE4C1)),
-                      _buildSubjectCard(context, "assets/images/wordf.png",
-                          "Word Finder", const Color(0xFFC0EABD)),
+                      SubjectCard(imagePath: "assets/images/drawingp.png",
+                          title: "Drawing\nPad",bgColor:  const Color(0xFFCAD8EF)),
+                      SubjectCard(imagePath: "assets/images/voicer.png",
+                         title:  "Voice\nRecorder",bgColor:  const Color(0xFFFCE4C1)),
+                      SubjectCard(imagePath:  "assets/images/whiteb.png",
+                          title: "Whiteboard\nNotes",bgColor:  const Color(0xFFC0EABD)),
+                    SubjectCard(imagePath:  "assets/images/flashc.png",
+                          title: "Flash\nCard",bgColor:  const Color(0xFFCAD8EF)),
+                    SubjectCard(imagePath:  "assets/images/calculator.png",
+                          title: "Calculator",bgColor:  const Color(0xFFFCE4C1)),
+                      SubjectCard(imagePath: "assets/images/wordf.png",
+                          title: "Word Finder",bgColor:  const Color(0xFFC0EABD)),
                     ],
                   ),
                 ),
@@ -66,69 +80,4 @@ class ToolsPage extends StatelessWidget {
       ),
     );
   }
-// card
-  Widget _buildSubjectCard(
-      BuildContext context, String imagePath, String title, Color bgColor) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
-    return Container(
-      decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(6),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            //  Image section
-            Flexible(
-              flex: 2,
-              child: Center(
-                child: Image.asset(
-                  imagePath,
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 5),
-
-            //  Title section
-            Flexible(
-              flex: 1,
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-                child: Center(
-                  child: Text(
-                    title,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: AppColors.primaryA,
-                      fontWeight: FontWeight.bold,
-                      fontSize: screenWidth * 0.032,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
-
-
-
-
-
-
-
-

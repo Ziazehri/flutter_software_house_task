@@ -7,7 +7,7 @@ class MyButton extends StatelessWidget {
   final String text;
     final VoidCallback onPressed;
       final Size size; 
-   MyButton({super.key, required this.bckgclr, required this.text, required this.onPressed, required this.frgclr, required this.size});
+   const MyButton({super.key, required this.bckgclr, required this.text, required this.onPressed, required this.frgclr, required this.size});
 
   @override
   Widget build(BuildContext context) {

@@ -1,23 +1,14 @@
-import 'package:app/screens/art_screen.dart';
-import 'package:app/screens/books_scr.dart';
-import 'package:app/screens/early_years_scr.dart';
-import 'package:app/screens/games_page.dart';
-import 'package:app/screens/music_scr.dart';
-import 'package:app/screens/programming__scr.dart';
-import 'package:app/screens/reading_scr.dart';
-import 'package:app/screens/story_time_scr.dart';
-import 'package:app/screens/tools_scr.dart';
-import 'package:app/themes/app_theme.dart';
 import 'package:app/themes/gradiant_bkg.dart';
-import 'package:app/screens/cartoons_scr.dart';
+import 'package:app/widgets/subject_card1.dart';
 import 'package:app/widgets/circle_avaters.dart';
 import 'package:app/widgets/home_scr_header.dart';
+import 'package:app/widgets/subject_card2.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+    final Function(String) onSubjectSelected;
+   const HomePage({super.key,  required this.onSubjectSelected});
 
   @override
   Widget build(BuildContext context) {
@@ -38,119 +29,152 @@ class HomePage extends StatelessWidget {
                Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                InkWell(
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder:  (context) => EarlyYearsScr(),)),
-                  child: CircleAvaters(title: 'Early Years',imagePath: "assets/images/early2.png", color:Color(0XFFF87171),)),
-                InkWell(
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder:  (context) => ToolsPage(),)),
-                  child: CircleAvaters(title: 'Tools', imagePath: "assets/images/tools2.png", color: Color(0XFF34D399),)),
-                InkWell(
-                  onTap: ()=> Navigator.push(context, MaterialPageRoute(builder:  (context) => GamesPage(),)),
-                  child: CircleAvaters(title: 'Games', imagePath: "assets/images/game2.png",color:  Vx.yellow500,)),
-                InkWell(
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder:  (context) => ReadingPage(),)),
-                  child: CircleAvaters(title: 'Reading', imagePath: "assets/images/reading2.png", color: Colors.yellow,)),
+              InkWell(
+  onTap: () => onSubjectSelected("Early Years"),
+  child: CircleAvaters(
+    title: 'Early Years',
+    imagePath: "assets/images/early2.png",
+    color: Color(0XFFF87171),
+  ),
+),
+InkWell(
+  onTap: () => onSubjectSelected("Tools"),
+  child: CircleAvaters(
+    title: 'Tools',
+    imagePath: "assets/images/tools2.png",
+    color: Color(0XFF34D399),
+  ),
+),
+InkWell(
+  onTap: () => onSubjectSelected("Games"),
+  child: CircleAvaters(
+    title: 'Games',
+    imagePath: "assets/images/game2.png",
+    color: Vx.yellow500,
+  ),
+),
+InkWell(
+  onTap: () => onSubjectSelected("Reading"),
+  child: CircleAvaters(
+    title: 'Reading',
+    imagePath: "assets/images/reading2.png",
+    color: Colors.yellow,
+  ),
+),
+
               ],
                         ),
                   const SizedBox(height: 30),
                         
                   //  Featured Section
-                 Row(
-                  
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  //  First) box
-                  Expanded(
-                    flex: 2, // smaller width
-                    child: Container(
-                      height: 180,
-                      margin: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Stack(
-                        children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  "assets/images/featured.png",
-                  width: double.infinity,
-                  height: 180,
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  padding: const EdgeInsets.only(bottom:50),
-                  child: const Text(
-                    "Featured",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-              ),
-                        ],
-                      ),
-                    ),
-                  ),
+        
               
-                  //  Second  box
-                  Container(
-                    padding: const EdgeInsets.all(10),
-                    height: 180,
-                    margin: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Column(
+              
+                        Row(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    //  Left Box - Featured
+    Flexible(
+      flex: 2, // smaller width
+      child: Container(
+        margin: const EdgeInsets.all(8),
+        height: 175,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Stack(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.asset(
+                "assets/images/featured.png",
+                width: double.infinity,
+                height: double.infinity,
+                fit: BoxFit.cover,
+              ),
+            ),
 
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                                Expanded(
-                                  child: const Text(
-                                    "Updated 2C Code",
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.deepPurple,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(height: 10),
-                                const Text(
-                                  "2D Code has been\nupdated with new\noptions for visual coding.",
-                                  style: TextStyle(fontSize: 15, color: Colors.deepPurple),
-                                ),
-                                const Spacer(),
-                                
-                                Expanded(
-                                  child: ElevatedButton(
-                                    onPressed: () {},
-                                    style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primaryC,
-                  foregroundColor: Colors.black,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+            //  Featured text perfectly aligned to bottom center
+            Positioned(
+              bottom: 45,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: const Text(
+                  "Featured",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 22,
                   ),
-                 
-                                    ),
-                                    child: const Text("Start Learning"),
-                                  ),
-                                ),
-                      ],
-                    ),
-                  ),
-                ],
+                ),
               ),
-              
-              
-                        
-                  const SizedBox(height: 30),
+            ),
+          ],
+        ),
+      ),
+    ),
+
+    //  Right Box - Update Info
+   Flexible(
+  flex: 3,
+  child: ConstrainedBox(
+    constraints: const BoxConstraints(maxWidth: 300),
+    child: Container(
+      padding: const EdgeInsets.all(14),
+      margin: const EdgeInsets.all(8),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min, // Prevents overflow
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "Updated 2C Code",
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Color(0XFF371597),
+            ),
+          ),
+          const SizedBox(height: 6),
+          const Text(
+            "2D Code has been updated with new options for visual coding.",
+            style: TextStyle(
+              fontSize: 13,
+              color: Color.fromARGB(255, 133, 99, 224),
+              height: 1.3, //  Better line spacing
+            ),
+          ),
+          const SizedBox(height: 12),
+          Align(
+            alignment: Alignment.bottomLeft,
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0XFFFBBF24),
+                foregroundColor: Colors.black,
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                textStyle: const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+              ),
+              child: const Text("Start Learning"),
+            ),
+          ),
+        ],
+      ),
+    ),
+  ),
+)
+
+  ],
+)
+,
+                  const SizedBox(height: 10),
                         
                   //  Browse Subjects Section
                   const Text(
@@ -171,31 +195,29 @@ class HomePage extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 InkWell(
-                        onTap: () => Navigator.push(context, MaterialPageRoute(builder:  (context) => BooksScr(),)),
+                        onTap: () => onSubjectSelected("Books"),
                         
-                  child: _buildSubjectCard(context,"assets/images/books.png", "Books",
-                  Color(0xFFCAD8EF),
-                      ),
+                  child: SubjectCard(imagePath: "assets/images/books.png", title: "Books", bgColor:  const Color.fromARGB(255, 252, 228, 193),)
                 ),
                 InkWell(
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder:  (context) => ProgrammingScr(),)),
+                  onTap:() => onSubjectSelected("Programming"),
                         
                         
-                  child: _buildSubjectCard(context,"assets/images/programming.png", "Programming",
-                      const Color.fromARGB(255, 252, 228, 193),
+                  child: SubjectCard(imagePath: "assets/images/programming.png",title: "Programming",
+                    bgColor:   const Color.fromARGB(255, 252, 228, 193),
                     ),
                 ),
                 InkWell(
-                  onTap: () =>  Navigator.push(context, MaterialPageRoute(builder:  (context) => ArtScreen(),)),
-                  child: _buildSubjectCard(context,"assets/images/artandd.png","Art & Drawing",
-                         Color(0XFFC0EABD), 
+                  onTap: () => onSubjectSelected("Art & Drawing"),
+                  child: SubjectCard(imagePath:"assets/images/artandd.png",title: "Art & Drawing",
+                    bgColor:  Color(0XFFC0EABD), 
                      ),
                 ),
               ],
                         ),
                         
                         
-                       const SizedBox(height: 20),
+                       const SizedBox(height: 10),
                         
                     const Text(
                     "Take A Fun Break",
@@ -213,27 +235,28 @@ class HomePage extends StatelessWidget {
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
               physics: const NeverScrollableScrollPhysics(),
-              children: [
-                InkWell(
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder:(context) => CartoonsScr(),)),
-                  child: _buildSubjectCard2(context,"assets/images/cartoons.png", "Cartoons",
-                  Color(0XFFFDE68A),
-                     ),
-                ),
-                InkWell(
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder:(context) => MusicScr(),)),
-                  child: _buildSubjectCard2(context,"assets/images/music.png","Music",
-                      Color(0XFFC0EABD),
-                            
-                   ),
-                ),
-                InkWell(
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder:(context) => StoryTimeScr(),)),
-                  child: _buildSubjectCard2(context,"assets/images/stories_time.png", "Stories Time",
-                      Color(0XFFFEEED1C4),      ),
-                ),
-                        
-              ],
+        children: [
+  SubjectCard2(
+    imagePath: "assets/images/cartoons.png",
+    title: "Cartoons",
+    bgColor: const Color(0xFFFDE68A),
+    onTap: () => onSubjectSelected("Cartoons"),
+  ),
+  SubjectCard2(
+    imagePath: "assets/images/music.png",
+    title: "Music",
+    bgColor: const Color(0xFFC0EABD),
+    onTap:() => onSubjectSelected("Music"),
+  ),
+  SubjectCard2(
+    imagePath: "assets/images/stories_time.png",
+    title: "Stories Time",
+    bgColor: const Color(0xFFD1C4E9),
+    onTap: () => onSubjectSelected("Stories Time"),  
+  ),
+],
+
+
                         ),
                         
                 ],
@@ -244,92 +267,4 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-
-
-Widget _buildSubjectCard(BuildContext context, String imagePath, String title, Color bgColor) {
-  final screenWidth = MediaQuery.of(context).size.width;
-  final screenHeight = MediaQuery.of(context).size.height;
-
-  return Container(
-    clipBehavior: Clip.antiAlias,
-    width: screenWidth * 0.4, // responsive width
-    height: screenHeight * 0.2, // responsive height
-    decoration: BoxDecoration(
-      color: bgColor,
-      borderRadius: BorderRadius.circular(12),
-    ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        SizedBox(
-          height: screenHeight * 0.07, // responsive image container
-          child: Center(
-            child: Image.asset(
-              imagePath,
-              height: screenHeight * 0.05,
-              width: screenWidth * 0.12,
-              fit: BoxFit.contain,
-            ),
-          ),
-        ),
-        Container(
-          width: double.infinity,
-          height: screenHeight * 0.04,
-          color: Colors.white,
-          child: Center(
-            child: Text(
-              title,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: screenWidth * 0.03, // responsive text size
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-Widget _buildSubjectCard2(BuildContext context, String imagePath, String title, Color bgColor) {
-  final screenWidth = MediaQuery.of(context).size.width;
-  final screenHeight = MediaQuery.of(context).size.height;
-
-  return Container(
-    clipBehavior: Clip.antiAlias,
-    width: screenWidth * 0.4, // responsive width
-    height: screenHeight * 0.18, // responsive height
-    decoration: BoxDecoration(
-      color: bgColor,
-      borderRadius: BorderRadius.circular(12),
-    ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Padding(
-          padding: EdgeInsets.only(top: screenHeight * 0.015),
-          child: Image.asset(
-            imagePath,
-            height: screenHeight * 0.06,
-            width: screenWidth * 0.12,
-            fit: BoxFit.contain,
-          ),
-        ),
-        Text(
-          title,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: screenWidth * 0.03, // responsive text size
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ],
-    ),
-  );
-}
-
-
-
-
     }

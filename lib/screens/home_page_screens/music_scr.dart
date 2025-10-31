@@ -3,6 +3,8 @@ import 'package:app/screens/music_sub_screens/audio_song_scr.dart';
 import 'package:app/themes/app_theme.dart';
 import 'package:app/themes/gradiant_bkg.dart';
 import 'package:app/widgets/custom_header2.dart';
+import 'package:app/widgets/subject_card2.dart';
+import 'package:app/widgets/subject_card_3.dart';
 import 'package:flutter/material.dart';
 
 class MusicScr extends StatelessWidget {
@@ -20,15 +22,30 @@ class MusicScr extends StatelessWidget {
                 const CustomHeader2(),
 
 
-                const Text(
-                  textAlign: TextAlign.center,
-                  "Choose Your Vibe",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                  RichText(
+                          
+    textAlign: TextAlign.center,
+    text: const TextSpan(
+      style: TextStyle(
+        fontSize: 26,
+        fontWeight: FontWeight.bold,
+      ),
+      children: [
+        TextSpan(
+          text: "Choose ",
+          style: TextStyle(color: Colors.white),
+        ),
+        TextSpan(
+          text: "Your ",
+          style: TextStyle(color: Color(0XFFFBBF24)), // highlighted part
+        ),
+        TextSpan(
+          text: "Vibe",
+          style: TextStyle(color: Colors.white),
+        ),
+      ],
+    ),
+  ),
                 const SizedBox(height: 10),
 
                 const Text(
@@ -60,45 +77,50 @@ class MusicScr extends StatelessWidget {
                       crossAxisSpacing: 30,
                       mainAxisSpacing: 20,
                       physics: const NeverScrollableScrollPhysics(),
-                      children: [
-                        InkWell(
-                          onTap: () =>  Navigator.push(context, MaterialPageRoute(builder: (context) => AudioSongsScr(),)),
-                          child: _buildSubjectCard2(
-                            "assets/images/audio.png",
-                            "Audio",
-                          "Listen to songs or\nstories in audio \nformat",
-                   
-                            const Color(0xFFCAD8EF),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {    },
-                          child: _buildSubjectCard2(
-                            "assets/images/video.png",
-                            "Video",
-                                "Watch animated\nsongs or music\nvideos",
-                    
-                            const Color(0xFFE5F4E4),
-                          ),
-                        ),
-                        InkWell(
-                             onTap: () {    },
-                    
-                          child: _buildSubjectCard2(
-                            "assets/images/classical.png",
-                            "Classical",
-                              "Listen to calm and\nclassic pieces",
-                    
-                            const Color(0xFFFEEED1C4),
-                          ),
-                        ),
-                        _buildSubjectCard2(
-                          "assets/images/classi2.png",
-                          "Learning Songs",
-                          "Songs that teach\nalphabets,\nnumbers, etc.",
-                          const Color(0xFFFFFFFF),
-                        ),
-                      ],
+                  children: [
+  InkWell(
+    onTap: () => Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const AudioSongsScr()),
+    ),
+    child: const SubjectCard3(
+      imagePath: "assets/images/audio.png",
+      title: "Audio",
+      description: "Listen to songs or\nstories in audio \nformat",
+      bgColor: Color(0xFFCAD8EF),
+    ),
+  ),
+  InkWell(
+    onTap: () {
+      // Add navigation or action here
+    },
+    child: const SubjectCard3(
+      imagePath: "assets/images/video.png",
+      title: "Video",
+      description: "Watch animated\nsongs or music\nvideos",
+      bgColor: Color(0xFFE5F4E4),
+    ),
+  ),
+  InkWell(
+    onTap: () {
+      // Add navigation or action here
+    },
+    child: const SubjectCard3(
+      imagePath: "assets/images/classical.png",
+      title: "Classical",
+      description: "Listen to calm and\nclassic pieces",
+      bgColor: Color(0xfffeeed1c4),
+    ),
+  ),
+  const SubjectCard3(
+    imagePath: "assets/images/classi2.png",
+    title: "Learning Songs",
+    description: "Songs that teach\nalphabets,\nnumbers, etc.",
+    bgColor: Color(0xFFFFFFFF),
+  ),
+],
+
+
                     ),
                   ),
                 ),
@@ -109,52 +131,4 @@ class MusicScr extends StatelessWidget {
       ),
     );
   }
-//
-Widget _buildSubjectCard2(
-  String imagePath,
-  String title,
-  String description,
-  Color bgColor,
-) {
-  return Container(
-    clipBehavior: Clip.antiAlias,
-    decoration: BoxDecoration(
-      color: bgColor,
-      borderRadius: BorderRadius.circular(14),
-    ),
-    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Image.asset(
-          imagePath,
-          height: 50,
-          width: 50,
-          fit: BoxFit.contain,
-        ),
-        const SizedBox(height: 12),
-        Text(
-          
-          title,
-          style: const TextStyle(
-            color: AppColors.primaryA,
-            fontWeight: FontWeight.bold,
-            fontSize: 15,
-          ),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 0),
-        Text(
-          description,
-          style: const TextStyle(
-            color: AppColors.primaryA,
-
-            fontSize: 14,
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ],
-    ),
-  );
-}
 }

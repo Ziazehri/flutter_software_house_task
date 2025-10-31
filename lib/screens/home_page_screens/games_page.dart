@@ -1,6 +1,7 @@
 import 'package:app/themes/app_theme.dart';
 import 'package:app/themes/gradiant_bkg.dart';
 import 'package:app/widgets/custom_header2.dart';
+import 'package:app/widgets/subject_card1.dart';
 import 'package:flutter/material.dart';
 
 class GamesPage extends StatelessWidget {
@@ -21,20 +22,32 @@ class GamesPage extends StatelessWidget {
 
                    const SizedBox(height: 30),
 
-                    Padding(
-                      padding: const EdgeInsets.only(left: 16,right: 16),
-                      child: const Text(
-                        textAlign: TextAlign.center,
-                      "Learn Through Play",
-                      style: TextStyle(
-                        
-                        
-                          color: Colors.white,
-                          
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold),
-                                        ),
-                    ),
+                       Padding(
+  padding: const EdgeInsets.symmetric(horizontal: 16),
+  child: RichText(
+    textAlign: TextAlign.center,
+    text: const TextSpan(
+      style: TextStyle(
+        fontSize: 26,
+        fontWeight: FontWeight.bold,
+      ),
+      children: [
+        TextSpan(
+          text: "Learn ",
+          style: TextStyle(color: Colors.white),
+        ),
+        TextSpan(
+          text: "Through",
+          style: TextStyle(color: Color(0XFFFBBF24)), // highlighted part
+        ),
+        TextSpan(
+          text: " Playing",
+          style: TextStyle(color: Colors.white),
+        ),
+      ],
+    ),
+  ),
+),
                   const SizedBox(height: 30),
 
                             Padding(
@@ -48,18 +61,18 @@ class GamesPage extends StatelessWidget {
                                 physics: const NeverScrollableScrollPhysics(),
                                 children: [
                               
-                                  _buildSubjectCard(context,"assets/images/matchingg.png", "Matching\nGames",
-                                  Color(0xFFFEEED1C4),
+                                  SubjectCard(imagePath:  "assets/images/matchingg.png",title:  "Matching\nGames",
+                                 bgColor:  Color(0xfffeeed1c4),
                                    ),
-                                  _buildSubjectCard(context,"assets/images/memoryg.png", "Memory\nGames",
-                                    Color(0xFFFBDCA9E5
+                                  SubjectCard(imagePath: "assets/images/memoryg.png", title: "Memory\nGames",
+                                 bgColor: Color(0xfffbdca9e5
 ) ,
                                      ),
-                                  _buildSubjectCard(context,"assets/images/puzzleb.png", "Puzzle\nBuilder",
-                                         Color(0XFFB08484), 
+                                  SubjectCard(imagePath: "assets/images/puzzleb.png",title:  "Puzzle\nBuilder",
+                                       bgColor:   Color(0XFFB08484), 
                                      ),
-                                         _buildSubjectCard(context,"assets/images/words.png", "Word\nScramble",
-                                  Color(0xFF390EAE),
+                                         SubjectCard(imagePath: "assets/images/words.png",title:  "Word\nScramble",
+                                 bgColor:  Color(0xFF390EAE),
                                       ),
                                 ],
                               ),
@@ -68,53 +81,6 @@ class GamesPage extends StatelessWidget {
         )),
     );
   }
-
-Widget _buildSubjectCard(BuildContext context, String imagePath, String title, Color bgColor) {
-  final screenWidth = MediaQuery.of(context).size.width;
-  final screenHeight = MediaQuery.of(context).size.height;
-
-  return Container(
-    clipBehavior: Clip.antiAlias,
-    width: screenWidth * 0.4, // responsive width
-    height: screenHeight * 0.2, // responsive height
-    decoration: BoxDecoration(
-      color: bgColor,
-      borderRadius: BorderRadius.circular(12),
-    ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        SizedBox(
-          height: screenHeight * 0.10, // responsive image container
-          child: Center(
-            child: Image.asset(
-              imagePath,
-              height: screenHeight * 0.05,
-              width: screenWidth * 0.12,
-              fit: BoxFit.contain,
-            ),
-          ),
-        ),
-        Container(
-          width: double.infinity,
-          height: screenHeight * 0.07,
-          color: Colors.white,
-          child: Center(
-            child: Text(
-              title,
-              style: TextStyle(
-                color: AppColors.primaryA,
-                fontWeight: FontWeight.bold,
-                fontSize: screenWidth * 0.03, // responsive text size
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
-}
 
 }
   

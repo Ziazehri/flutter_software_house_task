@@ -1,6 +1,6 @@
-import 'package:app/themes/app_theme.dart';
 import 'package:app/themes/gradiant_bkg.dart';
 import 'package:app/widgets/custom_header2.dart';
+import 'package:app/widgets/subject_card2.dart';
 import 'package:flutter/material.dart';
 
 class ReadingPage extends StatelessWidget {
@@ -13,111 +13,120 @@ class ReadingPage extends StatelessWidget {
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-            children: [
+            child:Column(
+  children: [
+    //  Header
+    const Flexible(
+      flex: 0,
+      child: CustomHeader2(),
+    ),
 
-              CustomHeader2(),
-       
+    // Image section
+    Flexible(
+      flex: 3,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 12.0),
+        child: Image.asset(
+          "assets/images/readingmain.png",
+          fit: BoxFit.contain,
+        ),
+      ),
+    ),
 
-                   Image.asset(
-  "assets/images/readingmain.png",
-  height: 160,
-  width: 160,
-  fit: BoxFit.cover,
-),
+    //  Title
+    Flexible(
+      flex: 1,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        child: RichText(
+    textAlign: TextAlign.center,
+    text: const TextSpan(
+      style: TextStyle(
+        fontSize: 26,
+        fontWeight: FontWeight.bold,
+      ),
+      children: [
+        TextSpan(
+          text: "Discover ",
+          style: TextStyle(color: Colors.white),
+        ),
+        TextSpan(
+          text: "Stories ",
+          style: TextStyle(color: Color(0XFFFBBF24)), // highlighted part
+        ),
+        TextSpan(
+          text: " &\n Word Games",
+          style: TextStyle(color: Colors.white),
+        ),
+      ],
+    ),
+  ),
+      ),
+    ),
 
+    // Subtitle
+    const Flexible(
+      flex: 1,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 8.0),
+        child: Text(
+          "Read, explore, and grow your vocabulary.",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 14,
+          ),
+        ),
+      ),
+    ),
 
+    const SizedBox(height: 10),
 
-                    const Text(
-                      textAlign: TextAlign.center,
-                    "Discover Stories & \n Word Games",
-                    style: TextStyle(
-                      
-                      
-                        color: Colors.white,
-                        
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold),
-                                      ),
-                  const SizedBox(height: 10),
+    //  Grid Section
+    Flexible(
+      flex: 4,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: GridView.count(
+          crossAxisCount: 2,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
+          childAspectRatio: 1.1,
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          children: const [
+            SubjectCard2(
+              imagePath: "assets/images/readas.png",
+              title: "Read-Aloud \nStories",
+              bgColor: Color(0xFFCAD8EF),
+            ),
+            SubjectCard2(
+              imagePath: "assets/images/pictureb.png",
+              title: "Picture\nBook",
+              bgColor: Color.fromARGB(255, 252, 228, 193),
+            ),
+            SubjectCard2(
+              imagePath: "assets/images/slightw.png",
+              title: "Slight Words",
+              bgColor: Color(0xFFC0EABD),
+            ),
+            SubjectCard2(
+              imagePath: "assets/images/story.png",
+              title: "Story Builder",
+              bgColor: Color(0xFFCAD8EF),
+            ),
+          ],
+        ),
+      ),
+    ),
+  ],
+)
 
-                     const Text(
-                      textAlign: TextAlign.center,
-                    "Read , explore and grow your vocabolary.",
-                    style: TextStyle(                 
-                        color: AppColors.secondaryC,  fontSize: 14,
-                        ),
-                                      ),
-                  const SizedBox(height: 30),
-
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: GridView.count(
-                                childAspectRatio: 1.2,
-                                crossAxisCount: 2,
-                                shrinkWrap: true,
-                                crossAxisSpacing: 30,
-                                mainAxisSpacing: 30,
-                                physics: const NeverScrollableScrollPhysics(),
-                                children: [
-                              
-                                  _buildSubjectCard2(context, "assets/images/readas.png", " Read-Aloud \n Stories",
-                                  Color(0xFFCAD8EF),
-                                    ),
-                                  _buildSubjectCard2(context, "assets/images/pictureb.png", " Picture\nBook",
-                                      const Color.fromARGB(255, 252, 228, 193),
-                                     ),
-                                  _buildSubjectCard2(context, "assets/images/slightw.png", "Slight\nWords",
-                                         Color(0XFFC0EABD), 
-                                    ),
-                                         _buildSubjectCard2(context, "assets/images/story.png","Story Builder",
-                                  Color(0xFFCAD8EF),
-                                     ),
-                                ],
-                              ),
-                            ),    ],           ),
           ),
         )),
     );
   }
-  
-Widget _buildSubjectCard2(BuildContext context, String imagePath, String title, Color bgColor) {
-  final screenWidth = MediaQuery.of(context).size.width;
-  final screenHeight = MediaQuery.of(context).size.height;
 
-  return Container(
-    clipBehavior: Clip.antiAlias,
-    width: screenWidth * 0.4, // responsive width
-    height: screenHeight * 0.18, // responsive height
-    decoration: BoxDecoration(
-      color: bgColor,
-      borderRadius: BorderRadius.circular(12),
-    ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Padding(
-          padding: EdgeInsets.only(top: screenHeight * 0.015),
-          child: Image.asset(
-            imagePath,
-            height: screenHeight * 0.06,
-            width: screenWidth * 0.12,
-            fit: BoxFit.contain,
-          ),
-        ),
-        Text(
-          title,
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            color: AppColors.primaryA,
-            fontSize: screenWidth * 0.03, // responsive text size
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ],
-    ),
-  );
-}
 
 
 }

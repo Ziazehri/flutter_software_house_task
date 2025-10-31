@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:app/screens/sign_up_screen.dart';
+import 'package:app/screens/authentication_screens/sign_up_screen.dart';
 import 'package:app/themes/app_theme.dart';
 import 'package:app/themes/gradiant_bkg.dart';
 import 'package:app/widgets/button.dart';

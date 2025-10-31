@@ -1,7 +1,6 @@
 import 'dart:async';
 
-import 'package:app/screens/login_scr.dart';
-import 'package:app/screens/sign_up_screen.dart';
+import 'package:app/screens/authentication_screens/login_scr.dart';
 import 'package:app/themes/gradiant_bkg.dart';
 import 'package:flutter/material.dart';
 

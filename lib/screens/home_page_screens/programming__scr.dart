@@ -1,6 +1,6 @@
-import 'package:app/themes/app_theme.dart';
 import 'package:app/themes/gradiant_bkg.dart';
 import 'package:app/widgets/custom_header2.dart';
+import 'package:app/widgets/subject_card2.dart';
 import 'package:flutter/material.dart';
 
 class ProgrammingScr extends StatelessWidget {
@@ -18,13 +18,32 @@ class ProgrammingScr extends StatelessWidget {
             
               CustomHeader2(),
                       
-                    const Text(
-                      textAlign: TextAlign.center,
-                    "Let's Start Coding!",
-                    style: TextStyle(       
-                        color: Colors.white,  fontSize: 26,
-                        fontWeight: FontWeight.bold),
-                                      ),
+                   
+                   
+                        RichText(
+                          
+    textAlign: TextAlign.start,
+    text: const TextSpan(
+      style: TextStyle(
+        fontSize: 26,
+        fontWeight: FontWeight.bold,
+      ),
+      children: [
+        TextSpan(
+          text: "Let's ",
+          style: TextStyle(color: Colors.white),
+        ),
+        TextSpan(
+          text: "Start ",
+          style: TextStyle(color: Color(0XFFFBBF24)), // highlighted part
+        ),
+        TextSpan(
+          text: "Coding!",
+          style: TextStyle(color: Colors.white),
+        ),
+      ],
+    ),
+  ),
             
                   const SizedBox(height: 10),
             
@@ -47,37 +66,49 @@ class ProgrammingScr extends StatelessWidget {
                                 crossAxisSpacing: 20,
                                 mainAxisSpacing: 20,
                                 physics: const NeverScrollableScrollPhysics(),
-                                children: [
-                              
-                                  _buildSubjectCard2(context,"assets/images/blockc.png", " Block Coding",
-                                  Color(0xFFFEEED1C4),
-                                      ),
+                             children: [
+  const SubjectCard2(
+    imagePath: "assets/images/blockc.png",
+    title: "Block Coding",
+    bgColor: Color(0xFFD1C4E9), 
+  ),
+  const SubjectCard2(
+    imagePath: "assets/images/pythonb.png",
+    title: "Python Basics",
+    bgColor: Color(0xFFDCA9E5), 
+  ),
+  const SubjectCard2(
+    imagePath: "assets/images/webd.png",
+    title: "Web Development",
+    bgColor: Color(0xFFCAD8EF),
+  ),
+  const SubjectCard2(
+    imagePath: "assets/images/gamed.png",
+    title: "Game Development",
+    bgColor: Color(0xFFC0EABD),
+  ),
+  const SubjectCard2(
+    imagePath: "assets/images/mobapp.png",
+    title: "Mob App Coding",
+    bgColor: Color(0xFFF5ABBC),
+  ),
+  const SubjectCard2(
+    imagePath: "assets/images/aiar.png",
+    title: "AI & Robotics",
+    bgColor: Color(0xFFFDE68A),
+  ),
+  const SubjectCard2(
+    imagePath: "assets/images/js.png",
+    title: "JavaScript Fun",
+    bgColor: Color(0xFFFFFFFF),
+  ),
+  const SubjectCard2(
+    imagePath: "assets/images/codingq.png",
+    title: "Coding Quizzes",
+    bgColor: Color(0xFF9B73ED),
+  ),
+],
 
-                                  _buildSubjectCard2(context,"assets/images/pythonb.png", "Python Basics",
-                                     Color(0xFFFBDCA9E5),
-
-                                      ),
-                            
-                                         _buildSubjectCard2(context,"assets/images/webd.png", "Web Development",
-                                  Color(0xFFCAD8EF),
-                                      ),
-                                        _buildSubjectCard2(context,"assets/images/gamed.png", "Game Development",
-                                         Color(0XFFC0EABD), 
-                                      ),
-                                         _buildSubjectCard2(context,"assets/images/mobapp.png", "Mob App Coding",
-                                  Color(0xFFF5ABBC),
-                                      ),
-                                        _buildSubjectCard2(context,"assets/images/aiar.png", "Ai & Robotics",
-                                         Color(0XFFFDE68A), 
-                                      ),
-                                         _buildSubjectCard2(context,"assets/images/js.png", "JavaScript Fun",
-                                  Color(0xFFFFFFFF),
-                                      ),
-                                        _buildSubjectCard2(context,"assets/images/codingq.png", "Coding Quizzes",
-                                         Color(0XFF9B73ED), 
-                                      ),
-                                       
-                                ],
                               ),
                             ),    ],           ),
           ),
@@ -86,43 +117,6 @@ class ProgrammingScr extends StatelessWidget {
   }
 
    
-Widget _buildSubjectCard2(BuildContext context, String imagePath, String title, Color bgColor) {
-  final screenWidth = MediaQuery.of(context).size.width;
-  final screenHeight = MediaQuery.of(context).size.height;
-
-  return Container(
-    clipBehavior: Clip.antiAlias,
-    width: screenWidth * 0.4, // responsive width
-    height: screenHeight * 0.18, // responsive height
-    decoration: BoxDecoration(
-      color: bgColor,
-      borderRadius: BorderRadius.circular(12),
-    ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Padding(
-          padding: EdgeInsets.only(top: screenHeight * 0.015),
-          child: Image.asset(
-            imagePath,
-            height: screenHeight * 0.06,
-            width: screenWidth * 0.12,
-            fit: BoxFit.contain,
-          ),
-        ),
-        Text(
-          title,
-          style: TextStyle(
-          color: AppColors.primaryA,
-            fontWeight: FontWeight.bold,
-            fontSize: screenWidth * 0.03, // responsive text size
-          ),
-          textAlign: TextAlign.center,
-        ),
-      ],
-    ),
-  );
-}
 
 
 }

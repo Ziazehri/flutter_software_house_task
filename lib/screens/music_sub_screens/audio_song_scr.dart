@@ -1,3 +1,8 @@
+import 'package:app/screens/music_sub_screens/audio_sub_screens./all_audios_screens.dart';
+import 'package:app/screens/music_sub_screens/audio_sub_screens./educational_songs.dart';
+import 'package:app/screens/music_sub_screens/audio_sub_screens./islamic_songs_scr.dart';
+import 'package:app/screens/music_sub_screens/audio_sub_screens./motivational_songs_scr.dart';
+import 'package:app/screens/music_sub_screens/audio_sub_screens./nursery_audios.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:app/themes/app_theme.dart';
 import 'package:app/themes/gradiant_bkg.dart';
@@ -110,7 +115,7 @@ class _AudioSongsScrState extends State<AudioSongsScr> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                const CustomHeader2(),
+                const CustomHeader2(isback: true,),
 
                 //  Search Bar
                 Padding(
@@ -135,14 +140,30 @@ class _AudioSongsScrState extends State<AudioSongsScr> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    const Text(
-                      "Sing, Learn\n & Smile!",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                        RichText(
+                          
+    textAlign: TextAlign.start,
+    text: const TextSpan(
+      style: TextStyle(
+        fontSize: 26,
+        fontWeight: FontWeight.bold,
+      ),
+      children: [
+        TextSpan(
+          text: "Sing, ",
+          style: TextStyle(color: Colors.white),
+        ),
+        TextSpan(
+          text: "Learn\n",
+          style: TextStyle(color: Color(0XFFFBBF24)), // highlighted part
+        ),
+        TextSpan(
+          text: "& Smile!",
+          style: TextStyle(color: Colors.white),
+        ),
+      ],
+    ),
+  ),
                     Image.asset(
                       "assets/images/baby_singing.png",
                       height: 170,
@@ -153,47 +174,63 @@ class _AudioSongsScrState extends State<AudioSongsScr> {
                 ),
 
                 const SizedBox(height: 20),
+  Row(
+    mainAxisSize: MainAxisSize.min, 
+    children: [
+      customButton(
+        text: "Nursery audios",
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => NurseryAudios()),
+        ),
+        backgroundColor: AppColors.secondaryB,
+      ),
+      const SizedBox(width: 10),
+      customButton(
+        text: "Islamic Songs",
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => IslamicSongsScr()),
+        ),
+        backgroundColor: AppColors.primaryC,
+      ),
+      const SizedBox(width: 10),
+      customButton(
+        text: "All",
+        onPressed: () => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => AllAudiosScreens()),
+        ),
+        backgroundColor: AppColors.primaryB,
+      ),
+    ],
+  )
 
-                              Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      customButton(
-                          text: "Nursery audios",
-                          onPressed: () {},
-                          backgroundColor: AppColors.secondaryB),
-                      customButton(
-                          text: "Islamic Songs",
-                          onPressed: () {},
-                          backgroundColor: AppColors.primaryC),
-                      customButton(
-                          text: "All",
-                          onPressed: () {},
-                          backgroundColor: AppColors.primaryB),
-                    ],
-                  ),
-                ),
-
+,
                 const SizedBox(height: 20),
+Row(
+  mainAxisSize: MainAxisSize.min,
+  children: [
+    customButton(
+      text: "Educational Songs",
+      onPressed: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => EducationalSongs()),
+      ),
+      backgroundColor: Colors.teal,
+    ),
+    const SizedBox(width: 10), 
+    customButton(
+      text: "Motivational Songs",
+      onPressed: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MotivationalSongsScr()),
+      ),
+      backgroundColor: Color.fromARGB(255, 155, 130, 225),
+    ),
+  ],
+),
 
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      customButton(
-                          text: "Educational Songs",
-                          onPressed: () {},
-                          backgroundColor: Colors.teal),
-                      customButton(
-                          text: "Motivational Songs",
-                          onPressed: () {},
-                          backgroundColor:
-                              const Color.fromARGB(255, 155, 130, 225)),
-                    ],
-                  ),
-                ),
 
 
                                 const SizedBox(height: 30),
@@ -309,8 +346,6 @@ class _AudioSongsScrState extends State<AudioSongsScr> {
     
   }
 
-
-// Custom Button
 Widget customButton({
   required String text,
   required VoidCallback onPressed,
@@ -324,17 +359,19 @@ Widget customButton({
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(borderRadius),
       ),
-      minimumSize: const Size(0, 50),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10), // 👈 add padding
+      minimumSize: Size.zero, // 👈 allows it to shrink fully
+      tapTargetSize: MaterialTapTargetSize.shrinkWrap, // 👈 removes extra height
     ),
     onPressed: onPressed,
     child: Text(
       text,
       style: TextStyle(
         color: Colors.white,
-        // fontWeight: FontWeight.bold,
         fontSize: fontSize,
       ),
     ),
   );
 }
+
 }

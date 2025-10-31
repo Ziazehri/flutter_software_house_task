@@ -17,7 +17,7 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+      // padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
     
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +50,7 @@ class Header extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 25),
+          const SizedBox(height: 5),
 
           Row(
   children: [

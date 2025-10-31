@@ -79,18 +79,33 @@ class _LearningCartonScrState extends State<LearningCartonScr> {
             padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                const CustomHeader2(),
+                const CustomHeader2(isback: true,),
                 const SizedBox(height: 10),
 
-                const Text(
-                  "Fun Cartoons That\nTeach!",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                   RichText(
+                          
+    textAlign: TextAlign.center,
+    text: const TextSpan(
+      style: TextStyle(
+        fontSize: 26,
+        fontWeight: FontWeight.bold,
+      ),
+      children: [
+        TextSpan(
+          text: "Fun " ,
+          style: TextStyle(color: Colors.white),
+        ),
+        TextSpan(
+          text: "Cartoons That \n",
+          style: TextStyle(color: Color(0XFFFBBF24)), // highlighted part
+        ),
+        TextSpan(
+          text: "Teach!",
+          style: TextStyle(color: Colors.white),
+        ),
+      ],
+    ),
+  ),
                 const SizedBox(height: 8),
 
                 const Text(

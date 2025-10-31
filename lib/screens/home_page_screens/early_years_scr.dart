@@ -1,4 +1,5 @@
 
+import 'package:app/screens/early_year_sub_screens/animal_sounds_scr.dart';
 import 'package:app/themes/app_theme.dart';
 import 'package:app/themes/gradiant_bkg.dart';
 import 'package:app/widgets/custom_header2.dart';
@@ -18,44 +19,79 @@ class EarlyYearsScr extends StatelessWidget {
               child: Column(
                 children: [
                   const CustomHeader2(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      const Text(
-                        textAlign: TextAlign.start,
-                        "Early Years\nTools",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      
-                  
-                      Expanded(
-                        child: Image.asset(
-                          "assets/images/early.png",
-                          height: 150,
-                          width: 210,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ],
-                  ),
+               Row(
+  mainAxisAlignment: MainAxisAlignment.spaceAround,
+  crossAxisAlignment: CrossAxisAlignment.center,
+  children: [
+    //  Text section
+   Flexible(
+  flex: 2,
+  child: RichText(
+    textAlign: TextAlign.start,
+    text: const TextSpan(
+      style: TextStyle(
+        fontSize: 26,
+        fontWeight: FontWeight.bold,
+      ),
+      children: [
+        TextSpan(
+          text: 'Early ',
+          style: TextStyle(color: Colors.white),
+        ),
+        TextSpan(
+          text: 'Years',
+          style: TextStyle(color:Color(0XFFFBBF24)), //  changed color
+        ),
+        TextSpan(
+          text: '\nTools',
+          style: TextStyle(color: Colors.white),
+        ),
+      ],
+    ),
+  ),
+),
+
+
+    //  Image section
+    Flexible(
+      flex: 3,
+      child: Image.asset(
+        "assets/images/early.png",
+        height: 150,
+        width: 210,
+        fit: BoxFit.cover,
+      ),
+    ),
+  ],
+),
+
                   SizedBox(height: 10,),
               
                                   // const SizedBox(height: 30),
-                                       const Text(
-                        textAlign: TextAlign.center,
-                        "Learning is fun with our\nEarly Years Tools!",
-                        style: TextStyle(
-                          fontSize: 20,
-                                                  color: Colors.white,
-              
-                                                  fontWeight: FontWeight.bold,
-              
-                        ),
-                      ),
+                               RichText(
+  textAlign: TextAlign.center,
+  text: const TextSpan(
+    style: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+    ),
+    children: [
+      TextSpan(
+        text: "Learning ",
+        style: TextStyle(color: Colors.white),
+      ),
+      TextSpan(
+        text: "is fun with ",
+        style: TextStyle(color: Color(0XFFFBBF24)), // highlighted phrase
+      ),
+      TextSpan(
+        text: "our\nEarly Years Tools!",
+        style: TextStyle(color: Colors.white),
+      ),
+    ],
+  ),
+),
+
               
                                        const Text(
                         textAlign: TextAlign.center,
@@ -93,8 +129,9 @@ class EarlyYearsScr extends StatelessWidget {
       title: "Counting Bubbles",
       button:  ElevatedButton(
         style: ElevatedButton.styleFrom(
+          minimumSize: Size(40, 30),
           foregroundColor: Colors.white,
-          backgroundColor: const Color.fromARGB(255, 179, 159, 235)
+          backgroundColor: const Color.fromARGB(255, 102, 66, 202)
         ),
     onPressed: () {},
     child: const Text("Start"),
@@ -109,11 +146,11 @@ class EarlyYearsScr extends StatelessWidget {
       imagePath: "assets/images/matcher.png",
       title: "Color Matcher",
       description: "Match colors\nusing drag & drop",
-      bgColor: const Color(0xFFFEEED1C4),
+      bgColor: const Color(0xfffeeed1c4),
     ),
   ),
   InkWell(
-        onTap: () {},
+        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => AnimalSoundsScr(),)),
 
     child: _buildSubjectCard2(
       imagePath: "assets/images/bhalo.png",
@@ -147,71 +184,74 @@ class EarlyYearsScr extends StatelessWidget {
       ),
     );
   }
-
- Widget _buildSubjectCard2({
-  String? imagePath, // optional
+Widget _buildSubjectCard2({
   required String title,
-  required String description,
+  String? imagePath,
+  String? description,
   Color? bgColor,
-  Widget? button, // optional
+  Widget? button,
 }) {
   return Container(
-    clipBehavior: Clip.antiAlias,
     decoration: BoxDecoration(
-      color: bgColor ?? Colors.white, // default if null
-      borderRadius: BorderRadius.circular(14),
+      color: bgColor ?? Colors.white,
+      borderRadius: BorderRadius.circular(12),
     ),
     padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        //  Optional Image
-        if (imagePath != null) ...[
-          Image.asset(
-            imagePath,
-            height: 50,
-            width: 50,
-            fit: BoxFit.contain,
+        //  Image (optional)
+        if (imagePath != null)
+          Flexible(
+            flex: 1,
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.contain,
+              height: 40,
+              width: 40,
+            ),
           ),
-          const SizedBox(height: 12),
-        ],
+
 
         //  Title
-        Expanded(
+        Flexible(
+          flex: 1,
           child: Text(
             title,
+            textAlign: TextAlign.center,
             style: const TextStyle(
-              color: AppColors.primaryA,
+              color: Color.fromARGB(255, 62, 74, 141),
               fontWeight: FontWeight.bold,
               fontSize: 15,
             ),
-            textAlign: TextAlign.center,
           ),
         ),
 
-        // const SizedBox(height: 4),
-
-        //  Description
-        Expanded(
-          child: Text(
-            description,
-            style: const TextStyle(
-              color: AppColors.secondaryB,
-              fontSize: 10,
+        //  Description (optional)
+        if (description != null)
+          Flexible(
+            flex: 1,
+            child: Text(
+              description,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Color(0xffff87171),
+                fontSize: 12,
+              ),
             ),
-            textAlign: TextAlign.center,
           ),
-        ),
-        // 
-        //Optional Button
+
+        // Button (optional)
         if (button != null) ...[
-          const SizedBox(height: 10),
-          Expanded(child: button),
+          Flexible(
+            flex: 1, child: button
+            ),
         ],
       ],
     ),
   );
 }
+
 
 
 }

@@ -1,7 +1,10 @@
+import 'package:app/screens/cartoons_sub_sreen/cartn_adventure_scr.dart';
+import 'package:app/screens/cartoons_sub_sreen/funny_crt_scr.dart';
 import 'package:app/screens/cartoons_sub_sreen/learning_carton_scr.dart';
 import 'package:app/themes/app_theme.dart';
 import 'package:app/themes/gradiant_bkg.dart';
 import 'package:app/widgets/custom_header2.dart';
+import 'package:app/widgets/subject_card2.dart';
 import 'package:flutter/material.dart';
 
 class CartoonsScr extends StatelessWidget {
@@ -19,15 +22,30 @@ class CartoonsScr extends StatelessWidget {
                 const CustomHeader2(),
 
 
-                const Text(
-                  textAlign: TextAlign.center,
-                  "Enjoy Learning\nThrough Cartoons",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                    RichText(
+                          
+    textAlign: TextAlign.center,
+    text: const TextSpan(
+      style: TextStyle(
+        fontSize: 26,
+        fontWeight: FontWeight.bold,
+      ),
+      children: [
+        TextSpan(
+          text: "Enjoy Learning\n",
+          style: TextStyle(color: Colors.white),
+        ),
+        TextSpan(
+          text: "Through ",
+          style: TextStyle(color: Color(0XFFFBBF24)), // highlighted part
+        ),
+        TextSpan(
+          text: "Cartoons",
+          style: TextStyle(color: Colors.white),
+        ),
+      ],
+    ),
+  ),
                 const SizedBox(height: 10),
 
                 const Text(
@@ -61,26 +79,29 @@ class CartoonsScr extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => LearningCartonScr(),)),
-                        child: _buildSubjectCard2(
-                          "assets/images/lc.png",
-                          "Learning\nCartoons",
-                          const Color(0xFFFEEED1C4),
+                     child: SubjectCard2(
+                         imagePath:  "assets/images/lc.png",
+                          title: "Learning\nCartoons",
+                         bgColor:  const Color(0xfffeeed1c4),
                         ),
                       ),
-                      _buildSubjectCard2(
-                        "assets/images/fc.png",
-                        "Funny Cartoons",
-                        const Color(0xFFFCE4C1),
+                      SubjectCard2(
+                        onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FunnyCartoonsScr(),)),
+                        imagePath: "assets/images/fc.png",
+                        title: "Funny Cartoons",
+                       bgColor:  const Color(0xFFFCE4C1),
                       ),
-                      _buildSubjectCard2(
-                        "assets/images/mst.png",
-                        "Moral Storiess",
-                        const Color(0xFFC0EABD),
+                    SubjectCard2(
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FunnyCartoonsScr(),)),
+                        imagePath: "assets/images/mst.png",
+                        title: "Moral Storiess",
+                       bgColor:  const Color(0xFFC0EABD),
                       ),
-                      _buildSubjectCard2(
-                        "assets/images/cadven.png",
-                        "Cartoon\nAdventures",
-                        const Color(0xFFCAD8EF),
+                    SubjectCard2(
+                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => CartnAdventureScr(),)),
+                        imagePath: "assets/images/cadven.png",
+                        title: "Cartoon\nAdventures",
+                       bgColor:  const Color(0xFFCAD8EF),
                       ),
                     ],
                   ),
@@ -93,42 +114,5 @@ class CartoonsScr extends StatelessWidget {
     );
   }
 
-  //  Updated function: uses asset image instead of icon
-  Widget _buildSubjectCard2(
-      String imagePath, String title, Color bgColor) {
-    return Container(
-      clipBehavior: Clip.antiAlias,
-      decoration: BoxDecoration(
-        color: bgColor,
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 15),
-            child: Image.asset(
-              imagePath,
-              height: 40,
-              width: 40,
-              fit: BoxFit.contain,
-            ),
-          ),
-          const SizedBox(height: 20),
-          Center(
-            child: Text(
-              title,
-              style: const TextStyle(
-                            color: AppColors.primaryA,
 
-                fontWeight: FontWeight.bold,
-                fontSize: 13,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
 }
